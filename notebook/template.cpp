@@ -12,6 +12,7 @@ const ll zero = 0;
 #define pb push_back
 #define fst first
 #define snd second
+#define esta(x,c) ((c).find(x) != (c).end())  // Devuelve true si x es un elemento del set c.
 
 // ############################################################### //
 
