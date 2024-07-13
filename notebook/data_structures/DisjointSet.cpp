@@ -1,6 +1,6 @@
 struct DisjointSet{
-
     vector<ll> parent, rnk;
+
     DisjointSet(ll n){
         rnk.assign(n, 0);
         for (ll i = 0; i < n; i++)
