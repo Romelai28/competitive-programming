@@ -7,6 +7,7 @@ using nodo_pesado = pair<peso, indice_nodo>;
 // Devuelve el vector de distancias desde inicio al i-esimo vértice.
 vector<ll> dijkstra(const indice_nodo inicio, const vector<vector<nodo_pesado>> &ady){
     vector<ll> distancia(ady.size(), LINF);
+    // vector<ll> parent(ady.size(), UNDEFINED);
     vector<bool> vis(ady.size(), false);
 
     distancia[inicio] = 0;
@@ -26,6 +27,7 @@ vector<ll> dijkstra(const indice_nodo inicio, const vector<vector<nodo_pesado>> 
             if(distancia[v] + longitud < distancia[u]){
                 q.erase({distancia[u], u});
                 distancia[u] = distancia[v] + longitud;
+                // parent[u] = v;
                 q.insert({distancia[u], u});
             }
         }
