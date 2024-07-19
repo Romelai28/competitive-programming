@@ -1,10 +1,12 @@
 struct DisjointSet{
     vector<ll> parent, rnk;
+    ll numOfComponents;
 
     DisjointSet(ll n){
         rnk.assign(n, 0);
         for (ll i = 0; i < n; i++)
             parent.push_back(i);
+        numOfComponents = n;
     }
 
     ll findSet(ll x){
@@ -29,6 +31,7 @@ struct DisjointSet{
                 parent[y] = x;
                 rnk[x]++;
             }
+            numOfComponents--;
         }
     }
 
