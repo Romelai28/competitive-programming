@@ -12,7 +12,25 @@ const ll zero = 0;
 #define pb push_back
 #define fst first
 #define snd second
-#define esta(x,c) ((c).find(x) != (c).end())  // Devuelve true si x es un elemento del set c.
+#define esta(x,c) ((c).find(x) != (c).end())  // Devuelve true si x es un elemento de c.
+
+#define DBG(x) cerr << #x << " = " << (x) << endl
+#define RAYA cerr << "----------" << endl
+#define forn(i,n) for (int i=0;i<(int)(n);i++)
+#define forsn(i,s,n) for (int i=(s);i<(int)(n);i++)
+#define dforn(i,n) for(int i=(int)((n)-1);i>=0;i--)
+#define dforsn(i,s,n) for(int i=(int)((n)-1);i>=(int)(s);i--)
+#define all(c) (c).begin(),(c).end()
+
+template <typename T>
+ostream & operator <<(ostream &os, const vector<T>&v) {
+    os << "[";
+    forn(i, v.size()) {
+        if (i > 0) os << ",";
+        os << v[i];
+    }
+    return os << "]";
+}
 
 // ############################################################### //
 
