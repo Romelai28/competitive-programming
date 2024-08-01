@@ -2,7 +2,7 @@
 
 ll l = lower; // extremo izquierdo del rango de búsqueda.
 ll r = high; // extremo derecho del rango de búsqueda.
-while(r - l > 0) {
+while(l < r) {
     ll mid = (l + r) >> 1;
     if(f(mid) < f(mid+1)) {  // (<) Busca el minimo | (>) Busca el máximo.
         r = mid;
