@@ -10,3 +10,6 @@ while(r - l > 1) { // mientras que la distancia entre las fronteras sea >1 (es d
         r = mid;
     }
 }
+
+// Respuesta:
+// 'a' la última para cual P da true, y 'b' la primera para la cual P da false.
