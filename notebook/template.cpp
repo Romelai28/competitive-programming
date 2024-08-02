@@ -22,8 +22,9 @@ const ll zero = 0;
 #define dforsn(i,s,n) for(int i=(int)((n)-1);i>=(int)(s);i--)
 #define all(c) (c).begin(),(c).end()
 
+// Show vector
 template <typename T>
-ostream & operator <<(ostream &os, const vector<T>&v) {
+ostream & operator <<(ostream &os, const vector<T> &v) {
     os << "[";
     forn(i, v.size()) {
         if (i > 0) os << ",";
@@ -32,9 +33,18 @@ ostream & operator <<(ostream &os, const vector<T>&v) {
     return os << "]";
 }
 
+// Show pair
+template <typename T1, typename T2>
+ostream & operator <<(ostream &os, const pair<T1, T2> &p) {
+    os << "{" << p.first << "," << p.second << "}";
+    return os;
+}
+
+
 // ############################################################### //
 
-int main{
-    
+int main()
+{
+
     return 0;
 }
