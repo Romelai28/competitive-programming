@@ -40,6 +40,17 @@ ostream & operator <<(ostream &os, const pair<T1, T2> &p) {
     return os;
 }
 
+// Show set
+template <typename T>
+ostream & operator <<(ostream &os, const set<T> &s) {
+    os << "{";
+    for(auto it = s.begin(); it != s.end(); it++){
+        if(it != s.begin()) os << ",";
+        os << *it;
+    }
+    return os << "}";
+}
+
 
 // ############################################################### //
 
