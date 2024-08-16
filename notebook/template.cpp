@@ -2,6 +2,7 @@
 using namespace std;
 
 typedef long long ll;
+typedef long double ld;
 const ll UNDEFINED = -1;
 
 const int MAX_N = 1e5 + 1;
@@ -50,7 +51,6 @@ ostream & operator <<(ostream &os, const set<T> &s) {
     }
     return os << "}";
 }
-
 
 // ############################################################### //
 
