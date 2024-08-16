@@ -23,6 +23,7 @@ const ll zero = 0;
 #define dforsn(i,s,n) for(int i=(int)((n)-1);i>=(int)(s);i--)
 #define all(c) (c).begin(),(c).end()
 
+// DFS simple
 void dfs(ll v, vector<vector<ll>> &ady, vector<bool> &vis){
     vis[v] = true;
     for(ll u : ady[v]){
