@@ -16,7 +16,7 @@ bool bellman_ford(ll n, indice_nodo inicio, vector<Edge> &edges, vector<peso> &d
     // Devuelve true sii existe un ciclo de longitud negativa.
     // Calcula SSSP en dist.
  
-    // Obtiene las distancias más cortas desde inicio hacia todos.
+    // Obtiene las distancias mas cortas desde inicio hacia todos.
     dist[inicio] = 0;
     for(ll i=0; i<n; i++){
         for(Edge e : edges){

@@ -4,7 +4,7 @@ void bfs(ll inicio, vector<vector<ll>> &ady, vector<bool> &vis, vector<ll> &pare
     q.push(inicio);
     vis[inicio] = true;
     while(!q.empty()){
-        ll v = q.front();  // v es el vértice que estoy procesando
+        ll v = q.front();  // v es el vertice que estoy procesando
         q.pop();
         for (ll u : ady[v]){
             if (!vis[u]){
@@ -16,7 +16,7 @@ void bfs(ll inicio, vector<vector<ll>> &ady, vector<bool> &vis, vector<ll> &pare
     }
 }
 
-// BFS que calcula los padres de los vértices
+// BFS que calcula los padres de los vertices
 void calculatingParents(ll v, vector<vector<ll>> &adjList, vector<bool> &visited, vector<ll> &parents){
     ll n = adjList.size();
     visited[v] = true;
@@ -74,7 +74,7 @@ bool isBipartite(ll v, vector<vector<ll>> &adjList, vector<ll> &teams){
     return res;
 }
 
-// BFS que calcula el número de componentes conexas
+// BFS que calcula el numero de componentes conexas
 ll numberOfConnectedComponents(vector<vector<ll>> &adjList){
     ll n = adjList.size();
     vector<bool> visited(n, false);
@@ -90,7 +90,7 @@ ll numberOfConnectedComponents(vector<vector<ll>> &adjList){
     return res;
 }
 
-// BFS que calcula el número de vertices en una componente conexa
+// BFS que calcula el numero de vertices en una componente conexa
 ll numberOfVerticesInConnectedComponent(ll v, vector<vector<ll>> &adjList){
     ll n = adjList.size();
     vector<bool> visited(n, false);
