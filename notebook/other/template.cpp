@@ -11,6 +11,7 @@ const int INF = 1e9;
 const ll LINF = 1e18;
 const ll zero = 0;
 const ld EPSILON = 1e-10;
+const double PI = acos(-1.0);
 
 #define pb push_back
 #define fst first
