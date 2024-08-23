@@ -38,5 +38,4 @@ struct DisjointSet{
     bool same(ll x, ll y){
         return findSet(x) == findSet(y);
     }
-    
 };
