@@ -34,7 +34,41 @@ bool belongsToTheInterval(pair<ll, ll> &p1, ll x){
     return startingTimeP1 <= x && x <= endingTimeP1;
 }
 
-// This function helps me to sort the intervals to have first those which finish earlier. In case of a tie, I choose first the interval which starts earlier.
+bool estaALaIzquierda(pair<ll, ll> &p1, pair<ll, ll> &p2){
+    ll startingTimeP1 = p1.first;
+    ll endingTimeP1 = p1.second;
+    ll startingTimeP2 = p2.first;
+    ll endingTimeP2 = p2.second;
+    bool res1 = startingTimeP2 <= endingTimeP1 && endingTimeP1 <= endingTimeP2;
+    bool res2 = endingTimeP1 <= startingTimeP2;
+
+    return res1 || res2;
+}
+
+ll intervalSize(pair<ll,ll> &p1){
+    ll endingTimeP1 = p1.second;
+    ll startingTimeP1 = p2.first;
+    ll res = (ll) endingTimeP1 - startingTimeP1 + 1;
+    
+    if (startingTimeP1 > endingTimeP1){
+        res = 0;
+    }
+
+    return res;
+}
+
+// Chequear que la respuesta sea valida porque en caso de interseccion vacia te devuelve un intervalo invalido
+pair<ll,ll> intersectionIntervals(pair<ll,ll> &p1, pair<ll,ll> &p2){
+    pair<ll,ll> startingTimeP1 = p1.first;
+    pair<ll,ll> endingTimeP2 = p1.second;
+    pair<ll,ll> startingTimeP2 = p2.first;
+    pair<ll,ll> endingTimeP2 = p2.second;
+
+    pair<ll,ll> res = {max(startingTimeP1, startingTimeP2), min(endingTimeP1, endingTimeP2)};
+    return res;
+}
+
+// Esta funcion me ordena los intervalos para tener primero a aquellos que terminan antes y en caso de empate al que empieza antes.
 bool customCompare(pair<ll, ll> &p1, pair<ll, ll> &p2){
     ll endingTimeP1 = p1.second;
     ll endingTimeP2 = p2.second;
@@ -51,7 +85,9 @@ bool customCompare(pair<ll, ll> &p1, pair<ll, ll> &p2){
     return startingTimeP1 < startingTimeP2;
 }
 
-// This function helps me to sort the intervals to have first those which start earlier. In case of a tie, I choose first the interval which ends later.
+// Esta funcion me sirve para ordenar los intervalos de forma que tengo primero a los que terminan antes, y en caso de empate al que termina mas tarde lo tengo primero.
+// Esto me garantiza que: intervalo[i] e intervalo[i+1] se relacionan como: intervalo[i+1] esta contenido en i, o esta superpuesto con intervalo[i+1] pero tiene una parte que no y que esta a la derecha de este.
+// Ademas, si intervalo[i+1] e intervalo[i] son disjuntos se que intervalo[i+k] con k>1 tambien es disjunto con intervalo[i]
 bool customCompare2(pair<ll,ll> &p1, pair<ll,ll> &p2){
     ll startingTimeP1 = p1.first;
     ll startingTimeP2 = p2.first;
@@ -71,8 +107,8 @@ bool customCompare2(pair<ll,ll> &p1, pair<ll,ll> &p2){
 ll maximumNumberOfDisjointIntervals(vector<pair<ll, ll>> &intervals){
     int n = intervals.size();
     if (n == 0) return 0;
-    sort(all(intervals), customCompare);
 
+    sort(all(intervals), customCompare);
     pair<ll, ll> lastInterval = intervals[0];
     int res = 1;
 
@@ -88,6 +124,28 @@ ll maximumNumberOfDisjointIntervals(vector<pair<ll, ll>> &intervals){
     return res;
 }
 
+// Esta funcion se encarga de devolverme un arreglo de intervalos en el que ninguno contiene al otro y se conservan solo los intervalos mas grandes. Es decir, si A1 estaba incluido en A2, agrego a A2 a B
+vector<pair<ll,ll>> eliminateRedundantIntervals(vector<pair<ll,ll>> &A){
+    vector<pair<ll,ll>> B;
+    sort(all(A), customCompare2);
+    int n = A.size();
+
+    if (n == 0){
+        return B;
+    }
+
+    pair<ll,ll> lastInterval = A[0];
+    B.pb(lastInterval);
+
+    forsn(i, 1, n){
+        if(!isIncluded(A[i], lastInterval)){
+            lastInterval = A[i];
+            B.pb(lastInterval);
+        }
+    }
+
+    return B;
+}
 
 pair<ll, ll> redundantInterval(vector<pair<ll, ll>> &intervals){
     int n = intervals.size();
@@ -115,6 +173,36 @@ pair<ll, ll> redundantInterval(vector<pair<ll, ll>> &intervals){
             }
 
         }
+    }
+
+    return res;
+}
+
+ll interseccionMasGrande(vector<pair<ll,ll>> &A, vector<pair<ll,ll>> &B) {
+    vector<pair<ll,ll>> A1 = eliminateRedundantIntervals(A);
+    vector<pair<ll,ll>> B1 = eliminateRedundantInterals(B);
+
+    int n = A1.size();
+    int m = B1.size();
+    ll res = 0;
+
+    int i = 0;
+    int j = 0;
+
+    while (i < n && j < m){
+        ll sizeIntersection = sizeInterval(intersectionIntervals(A1[i], B1[j]));
+        res = max(res, sizeIntersection);
+
+        if (isIncluded(A1[i], B1[j])){
+            i++;
+        } else if (isIncluded(B1[j], A1[i])){
+            j++;
+        } else if (estaALaIzquierda(A1[i], B1[j])){
+            i++;
+        } else {
+            j++;
+        }
+
     }
 
     return res;
