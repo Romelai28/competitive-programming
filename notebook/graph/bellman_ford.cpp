@@ -9,7 +9,7 @@ struct Edge {
 
 // Asume grafo representado como lista de aristas.
 
-bool bellman_ford(ll n, indice_nodo inicio, vector<Edge> &edges, vector<ll> &dist){
+bool bellman_ford(ll n, indice_nodo inicio, vector<Edge> &edges, vl &dist){
     // Devuelve true sii existe un ciclo de longitud negativa.
     // Calcula SSSP en dist.
  
@@ -17,18 +17,14 @@ bool bellman_ford(ll n, indice_nodo inicio, vector<Edge> &edges, vector<ll> &dis
     dist[inicio] = 0;
     forn(i, n){
         for(Edge e : edges){
-            if(-LINF < dist[e.a] && dist[e.a] < LINF){
-                dist[e.b] = min(dist[e.b], dist[e.a] + e.cost);
-            }
+            if(-LINF < dist[e.a] && dist[e.a] < LINF) dist[e.b] = min(dist[e.b], dist[e.a] + e.cost);
         }
     }
  
     // Detectar ciclo de longitud negativa.
     for(Edge e : edges){
         if(-LINF < dist[e.a] && dist[e.a] < LINF){
-            if (dist[e.a] + e.cost < dist[e.b]){
-                return true;
-            }
+            if (dist[e.a] + e.cost < dist[e.b]) return true;
         }
     }
     return false;

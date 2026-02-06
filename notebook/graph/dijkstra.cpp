@@ -3,28 +3,20 @@ using indice_nodo = ll;
 using nodo_pesado = pair<peso, indice_nodo>;
 
 // Devuelve el vector de distancias desde inicio al i-esimo vertice.
-vector<ll> dijkstra(indice_nodo inicio, vector<vector<nodo_pesado>> &ady){
-    vector<ll> distancia(ady.size(), LINF);
-    // vector<ll> parent(ady.size(), UNDEFINED);
-    vector<bool> vis(ady.size(), false);
+vl dijkstra(indice_nodo inicio, vector<vector<nodo_pesado>> &ady){
+    vl distancia(SIZE(ady), LINF); // parent(SIZE(ady), UNDEFINED);
+    vb vis(SIZE(ady), false);
 
     distancia[inicio] = 0;
     set<nodo_pesado> q;
-
     q.insert({0, inicio});
 
     while(!q.empty()){
-        ll v = q.begin() -> second;
-        q.erase(q.begin());
-
-        if (vis[v]) {continue;}
+        ll v = q.begin() -> second; q.erase(q.begin());
+        if (vis[v]) continue;
         vis[v] = true;
         for(auto p : ady[v]){
-            ll longitud = p.fst;
-            ll u = p.snd;
-
-            // Longitud del camino de v hacia u.
-            // Relax:
+            ll longitud = p.fst, u = p.snd;
             if(distancia[v] + longitud < distancia[u]){
                 q.erase({distancia[u], u});
                 distancia[u] = distancia[v] + longitud;

@@ -1,5 +1,4 @@
 // D&C version
-
 ll maximumContiguosSumFromMiddle(vector<ll> &A){
     ll res = 0;
     int n = SIZE(A), middle = n/2;
@@ -29,7 +28,6 @@ ll maximumSubArraySum(vector<ll> &A){
 
     int middle = n/2;
     vector<ll> left, right;
-
     forn(i, middle) left.pb(A[i]);
     forsn(i, middle, n) right.pb(A[i]);
     
@@ -37,11 +35,3 @@ ll maximumSubArraySum(vector<ll> &A){
     res = max(middleSum, max(leftSum, rightSum));
     return res;
 }
-
-// ############################################################### //
-// DP version
-ll maximumSubArraySum(int i, vector<ll> &A, vector<ll> &memo){
-    if (i == -1) return 0; 
-    if (memo[i] == UNDEFINED) memo[i] = max(A[i], A[i] + maximumSubArraySum(i-1, A, memo));
-    return memo[i];
-} // res = max(memo[j]) para todo 0 <= j <= SIZE(A)-1

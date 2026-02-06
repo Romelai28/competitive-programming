@@ -13,10 +13,7 @@ private:
 		
 		for (auto v : adj[u]) {
 			if (v == p) continue;
-			if (num[v]) {
-				low[u] = min(low[u], num[v]);
-				continue;
-			}
+			if (num[v]) { low[u] = min(low[u], num[v]); continue;}
 			
 			dfs(adj, v, u);
 			low[u] = min(low[u], low[v]);
@@ -30,5 +27,4 @@ private:
 			}
 		}
 	}
-	
 };

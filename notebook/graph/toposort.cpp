@@ -1,31 +1,25 @@
-enum Color {WHITE, GREY, BLACK};  // Sin visitar / en proceso / Procesado.
 
 // Devuelve true si encuentra un ciclo.
-bool tdfs(ll v, const vector<vector<ll>> &ady, vector<Color> &color, vector<ll> &orden){
-    color[v] = GREY;
-
+bool tdfs(ll v, const vector<vl> &ady, vector<Estado> &visited, vl &orden){
+    visited[v] = VISITANDO;
     for(auto u : ady[v]){
-        if(color[u] == GREY){  // Si encuentra un nodo en proceso, hay un ciclo.
-            return true;
-        }
-        else if (color[u] == WHITE){  // Si encuentra un nodo no visitado, realiza DFS.
-            if(tdfs(u, ady, color, orden)) return true;
-        }
+        if(visited[u] == VISITANDO) return true;
+        else if (visited[u] == NO_VISITADO){ if(tdfs(u, ady, visited, orden)) return true; }
     }
 
     orden.pb(v);
-    color[v] = BLACK;
+    visited[v] = VISITADO;
     return false;
 }
 
 // Devuelve true sii existe un ciclo en G.
 // Si no existe ciclo, en orden queda almacenado un orden topologico de G.
-bool toposort(vector<vector<ll>> &ady, vector<ll> &orden){
-    vector<Color> color(SIZE(ady), WHITE);
+bool toposort(vector<vl> &ady, vl &orden){
+    vector<Estado> visited(SIZE(ady), NO_VISITADO);
     orden.clear();
 
     forn(v, SIZE(ady)){
-        if (color[v] == WHITE && tdfs(v, ady, color, orden)) return true;
+        if (color[v] == NO_VISITADO && tdfs(v, ady, visited, orden)) return true;
     }
 
     reverse(all(orden));

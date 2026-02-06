@@ -12,7 +12,7 @@ struct TwoSat {
 	bool canBeSat(){
 		SCC scc(ady, ady_t);
 		forn(i, n_vars){
-			if(scc.id_scc[2*i] == scc.id_scc[2*i+1]) {return false;}
+			if(scc.id_scc[2*i] == scc.id_scc[2*i+1]) return false;
 			assignment[i] = scc.id_scc[2*i] > scc.id_scc[2*i+1];
 		}
 		return true;

@@ -8,8 +8,7 @@ ll costs(int i, int j){
 
 void optimization(int k, int l, int r, int optL, int optR, vector<vl> &memo){
     if (l > r) return ;
-    int middle = (l + r)/2;
-	int optIndex = UNDEFINED;
+    int middle = (l + r)/2, optIndex = UNDEFINED;
 		
 	forsn(c, max(1, optL), min(optR, middle)+1){
 		ll value = memo[k-1][c-1] + costs(c, middle);
