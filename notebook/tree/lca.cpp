@@ -15,10 +15,7 @@ struct LCA {
 
     void dfs(int v, int p) {
         up[0][v] = p;
-        for (int u : adj[v]) if (u != p) {
-            depth[u] = depth[v] + 1;
-            dfs(u, v);
-        }
+        for (int u : adj[v]) if (u != p) { depth[u] = depth[v] + 1; dfs(u, v);}
     }
 
     int climb(int v, int d) {
@@ -35,9 +32,7 @@ struct LCA {
         return up[0][a];
     }
 
-    int dist(int a, int b) {
-        return depth[a] + depth[b] - 2 * depth[lca(a, b)];
-    }
+    int dist(int a, int b) { return depth[a] + depth[b] - 2 * depth[lca(a, b)];}
 };
 
 /*

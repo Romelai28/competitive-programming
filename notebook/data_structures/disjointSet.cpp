@@ -1,5 +1,5 @@
 struct DisjointSet{
-    vector<ll> parent, rnk;
+    vl parent, rnk;
     ll numOfComponents;
 
     DisjointSet(ll n){
