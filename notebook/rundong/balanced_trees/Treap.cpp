@@ -5,15 +5,11 @@ int sz[N];
 int prio[N];
 int c1 = 1;
 const int nil = 0;
-
-
 struct Treap
 {
     int head = nil;
-    
     mt19937 rng{114};
     uniform_int_distribution<> dist{1, (int)1e9};
-    
     int make_node(int k) {
         int n = c1++;
         key[n] = k; cnt[n] = 1; sz[n] = 1;
@@ -39,7 +35,6 @@ struct Treap
         up(l);
         return l;
     }
-    
     int insert(int n, int k) {
         if (n == nil) return make_node(k);
         if (key[n] < k) {
@@ -53,11 +48,9 @@ struct Treap
             lch[n] = insert(lch[n], k);
             if (prio[lch[n]] > prio[n]) n = right_rotate(n);
         }
-        
         up(n);
         return n;
     }
-    
     int erase(int n, int k) {
         if (n == nil) return nil;
         if (key[n] < k)
@@ -82,11 +75,9 @@ struct Treap
                 }
             }
         }
-        
         up(n);
         return n;
     }
-    
     int find_by_order(int n, int i) {
         if (i < sz[lch[n]]) return find_by_order(lch[n], i);
         else if (i < sz[lch[n]] + cnt[n]) return key[n];
@@ -98,7 +89,6 @@ struct Treap
         else if (k == key[n]) return sz[lch[n]];
         else return sz[lch[n]] + cnt[n] + order_of_key(rch[n], k);
     }
-    
     int upper_bound(int n, int k) {
         if (n == nil) return 1e9;
         if (k < key[n]) return min(key[n], upper_bound(lch[n], k));
@@ -109,7 +99,6 @@ struct Treap
         if (k > key[n]) return max(key[n], pre_lower_bound(rch[n], k));
         else return pre_lower_bound(lch[n], k);
     }
-    
 public:
     void insert(int k) { head = insert(head, k); }
     void erase(int k) { head = erase(head, k); }

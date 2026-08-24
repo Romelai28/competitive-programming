@@ -1,20 +1,8 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define for1(i, n) for(int i = 1; i <= (n); ++i)
-#define repeat(n) for1(_, n)
-#define dbg(x) cout << #x << " = " << (x) << endl;
-using ll = long long;
-using vll = vector<ll>;
-using vi = vector<int>;
-
-
 const int nil = 0;
-
 const int N = 2e7;
 int lch[N], rch[N];
 ll info[N], tag[N];
 int c1 = 1;
-
 class SegmentTree {
     
     int n;
@@ -74,15 +62,12 @@ public:
 };
 
 class NestedSegmentTree {
-    
     int n;
     vector<SegmentTree> info;
-    
     #undef LEFT
     #undef RIGHT
     #define LEFT l, m, 2*p 
     #define RIGHT m+1, r, 2*p+1 
-    
     void inc(int ul, int ur, int i, int l, int r, int p) {
         if (l == r) { info[p].add(ul, ur, 1);
         return; }
@@ -91,7 +76,6 @@ class NestedSegmentTree {
         if (i > m) inc(ul, ur, i, RIGHT);
         info[p].add(ul, ur, 1);
     }
-    
     int query(int ul, int ur, ll k, int l, int r, int p) {
         if (l == r) return l;
         SETM
@@ -101,36 +85,9 @@ class NestedSegmentTree {
         if (rcnt >= k)
             return query(ul, ur, k, RIGHT);
     }
-    
 public:
     NestedSegmentTree(int n) : n(n),
         info(8*n+10, SegmentTree(n)) {}
     void inc(int ul, int ur, int c) { inc(ul, ur, c + n+1, 1, 2*n+1, 1); }
     int query(int ul, int ur, ll k) { return query(ul, ur, k, 1, 2*n+1, 1) - (n+1); }
 };
-
-
-int n, m;
-
-
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
-    
-    cin >> n >> m;
-    NestedSegmentTree st(n);
-    
-    repeat(m)
-    {
-        int op, l, r; ll c;
-        cin >> op >> l >> r >> c;
-        if (op == 1) {
-            st.inc(l, r, c);
-        }
-        if (op == 2) {
-            int ans =  st.query(l, r, c);
-            cout << ans << '\n';
-        }
-    }
-}

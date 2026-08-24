@@ -1,22 +1,12 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define for1(i, n) for(int i = 1; i <= (n); ++i)
-#define repeat(n) for1(_, n)
-#define dbg(x) cout << #x << " = " << (x) << endl;
 const int oo = -((1 << 31) + 1);
-
 const int nil = 0;
-
 const int N = 2e7;
 int lch[N], rch[N];
 int height[N], sz[N];
 int key[N], cnt[N];
 int c1 = 1;
-
 class AVLTree {
-
     int root = nil;
-    
     void up(int n) {
         height[n] = 1 + max(height[lch[n]], height[rch[n]]);
         sz[n] = cnt[n] + sz[lch[n]] + sz[rch[n]];
@@ -62,7 +52,6 @@ class AVLTree {
         key[n] = v; cnt[n] = 1;
         return n;
     }
-    
     int insert(int n, int v) {
         if (n == nil) return make_node(v);
         if (v < key[n]) lch[n] = insert(lch[n], v);
@@ -71,7 +60,6 @@ class AVLTree {
         up(n);
         return maintain(n);
     }
-    
     pair<int, int> get_leftmost(int n) {
         if (lch[n] == nil) return { rch[n], n };
         
@@ -172,15 +160,12 @@ int n, q;
 int a[MAXN];
 
 class SegmentTree {
-    
     int n;
     vector<AVLTree> info;
-    
     #define SETM int m = l + (r - l) / 2;
     #define LEFT l, m, 2*p 
     #define RIGHT m+1, r, 2*p+1 
     #define IN_RANGE (i <= l and r <= j)
-    
     void set(int i, int v, int l, int r, int p) {
         if (l < r) { 
             SETM
@@ -197,7 +182,6 @@ class SegmentTree {
         }
         info[p].erase(a[i]);
     }
-    
     int order_of_key(int i, int j, int v, int l, int r, int p) {
         if IN_RANGE return info[p].order_of_key(v);
         SETM
@@ -206,10 +190,8 @@ class SegmentTree {
         if (j > m) ans += order_of_key(i, j, v, RIGHT);
         return ans;
     }
-    
     bool f(int v, int i, int j, int k) {
         int cnt = order_of_key(i, j, v, 1, n, 1);
-        // dbg(k)dbg(v)dbg(cnt)cout<<endl;
         return k <= cnt;
     }
     int bin_search(int l, int r, int i, int j, int k) {
@@ -218,7 +200,6 @@ class SegmentTree {
         if (f(m, i, j, k)) return bin_search(l, m, i, j, k);
         else return bin_search(m + 1, r, i, j, k);
     }
-    
     int predecessor(int i, int j, int v, int l, int r, int p) {
         if IN_RANGE return info[p].predecessor(v);
         SETM
@@ -227,7 +208,6 @@ class SegmentTree {
         if (j > m) ans = max(ans, predecessor(i, j, v, RIGHT));
         return ans;
     }
-    
     int successor(int i, int j, int v, int l, int r, int p) {
         if IN_RANGE return info[p].successor(v);
         SETM
@@ -236,7 +216,6 @@ class SegmentTree {
         if (j > m) ans = min(ans, successor(i, j, v, RIGHT));
         return ans;
     }
-    
 public:
     SegmentTree(int n) : n(n), info(4*n) {}
     void set(int i, int v) { set(i, v, 1, n, 1); }
@@ -247,46 +226,4 @@ public:
     }
     int predecessor(int i, int j, int v) { return predecessor(i, j, v, 1, n, 1); }
     int successor(int i, int j, int v) { return successor(i, j, v, 1, n, 1); }
-};
-
-
-
-int main()
-{
-    ios::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
-    
-    cin >> n >> q;
-    for1(i, n) cin >> a[i];
-    
-    SegmentTree st(n);
-    for1(i, n) st.set(i, a[i]);
-    
-    repeat(q)
-    {
-        int l, r, k, pos;
-        int op; cin >> op;
-        if (op == 1) {
-            cin >> l >> r >> k;
-            cout << st.order_of_key(l, r, k) + 1 << '\n';
-        }
-        if (op == 2) {
-            cin >> l >> r >> k;
-            cout << st.find_by_order(l, r, k - 1) << '\n';
-        }
-        if (op == 3) {
-            cin >> pos >> k;
-            st.erase(pos);
-            a[pos] = k;
-            st.set(pos, k);
-        }
-        if (op == 4) {
-            cin >> l >> r >> k;
-            cout << st.predecessor(l, r, k) << '\n';
-        }
-        if (op == 5) {
-            cin >> l >> r >> k;
-            cout << st.successor(l, r, k) << '\n';
-        }
-    }
-}
+};  // find_by_order O(log^3)

@@ -1,10 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
-#define for1(i, n) for(int i = 1; i <= (n); ++i)
-#define repeat(n) for1(_, n)
-#define chmax(a, b) ((a) = max(a, b))
 using i16 = int16_t;
-
 class SegmentTree {
     
     int n;

@@ -1,6 +1,3 @@
-using ll = long long;
-using tint = ll;
-
 class FenwickTree2D {
     vector<vector<tint>> t;
     int n, m;
