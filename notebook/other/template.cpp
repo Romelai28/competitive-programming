@@ -8,17 +8,16 @@ using vvi = vector<vi>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vl = vector<ll>;
+using vvl = vector<vl>;
 using ii = pair<int,int>;
 
 template <typename T>
 using vv = vector<vector<T>>;
 
 const ll UNDEFINED = -1;
-const int MAX_N = 1e5 + 1;
 const int MOD = 1e9 + 7;
 const int INF = 1e9;
 const ll LINF = 1e18;
-const ll zero = 0;
 const ld EPSILON = 1e-10;
 const double PI = acos(-1.0);
 

@@ -2,7 +2,8 @@
 #include <ext/pb_ds/tree_policy.hpp> 
 using namespace __gnu_pbds; 
 
-#define ordered_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> 
+template<typename T>
+using ordered_set = tree<T, null_type,less<T>, rb_tree_tag,tree_order_statistics_node_update>;
 
 template <typename T>
 using ordered_multiset = tree<

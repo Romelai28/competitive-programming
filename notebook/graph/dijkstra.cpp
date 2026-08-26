@@ -1,30 +1,31 @@
-using peso = ll;
-using indice_nodo = ll;
-using nodo_pesado = pair<peso, indice_nodo>;
+using peso_t = ll;
+using nodo_pesado_t = pair<peso_t, int>;  // {weight, to}
+using wgraph_t = vv<nodo_pesado_t>;
 
-// Devuelve el vector de distancias desde inicio al i-esimo vertice.
-vl dijkstra(indice_nodo inicio, vector<vector<nodo_pesado>> &ady){
-    vl distancia(SIZE(ady), LINF); // parent(SIZE(ady), UNDEFINED);
+// Sparse graph. O(m*log(n))
+vl dijkstra(int s, wgraph_t &ady){
+    vl dist(SIZE(ady), LINF);
+    // vi parent(SIZE(ady), UNDEFINED);
     vb vis(SIZE(ady), false);
+    set<nodo_pesado_t> q;
 
-    distancia[inicio] = 0;
-    set<nodo_pesado> q;
-    q.insert({0, inicio});
+    dist[s] = 0;
+    q.insert({0, s});
 
     while(!q.empty()){
-        ll v = q.begin() -> second; q.erase(q.begin());
-        if (vis[v]) continue;
+        int v = q.begin() -> snd;
+        q.erase(q.begin());
+        
+        if (vis[v]) {continue;}
         vis[v] = true;
-        for(auto p : ady[v]){
-            ll longitud = p.fst, u = p.snd;
-            if(distancia[v] + longitud < distancia[u]){
-                q.erase({distancia[u], u});
-                distancia[u] = distancia[v] + longitud;
+        for(auto [w, u] : ady[v]){
+            if(dist[v] + w < dist[u]){
+                q.erase({dist[u], u});
+                dist[u] = dist[v] + w;
                 // parent[u] = v;
-                q.insert({distancia[u], u});
+                q.insert({dist[u], u});
             }
         }
     }
-    return distancia;
+    return dist;
 }
- 
