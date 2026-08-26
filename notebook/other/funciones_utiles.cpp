@@ -24,6 +24,7 @@ int myint1 = stoi(myString); // Funciona con int y float.
 M.erase(it); // Borrar siempre en un multiset (y en general) usando un iterador para no borrar todas las apariciones
 sort(all(A), greater()); // Para ordenar un vector, llamar a una funcion bool
 *max_element(all(A)); *min_element(all(A)); 
+__int128 x; // Tipo de datos para calculaciones muy grandes
 
 const double DINF=numeric_limits<double>::infinity();  // double inf
 

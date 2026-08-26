@@ -4,4 +4,5 @@ int gcd(int a, int b) {
     return b == 0 ? a : gcd(b, a%b);
 }
 
-__gcd(a, b) // Implementacion default
+gcd(a, b); // Implementacion default para C++20
+__gcd(a, b) // Implementacion default (tiene problemas con negativos)

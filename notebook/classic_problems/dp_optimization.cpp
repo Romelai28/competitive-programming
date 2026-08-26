@@ -6,10 +6,9 @@ ll costs(int i, int j){
     // TO DO
 }
 
-void optimization(int k, int l, int r, int optL, int optR, vector<vl> &memo){
+void optimization(int k, int l, int r, int optL, int optR, vvl &memo){
     if (l > r) return ;
-    int middle = (l + r)/2;
-	int optIndex = UNDEFINED;
+    int middle = (l + r)/2, optIndex = UNDEFINED;
 		
 	forsn(c, max(1, optL), min(optR, middle)+1){
 		ll value = memo[k-1][c-1] + costs(c, middle);
@@ -21,7 +20,7 @@ void optimization(int k, int l, int r, int optL, int optR, vector<vl> &memo){
 	divide_and_conquer(k, middle+1, r, optIndex, optR, memo);
 }
 
-vector<vl> memo(k+1, vector<vl>(n, LINF));
+vvl memo(k+1, vl(n, LINF));
 forn(i, n) memo[1][i] = costs(0, i);
 forsn(i, 2, k+1) optimization(i, 0, n-1, 0, n-1, memo);
 
