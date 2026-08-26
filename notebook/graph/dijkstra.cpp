@@ -4,18 +4,13 @@ using wgraph_t = vv<nodo_pesado_t>;
 
 // Sparse graph. O(m*log(n))
 vl dijkstra(int s, wgraph_t &ady){
-    vl dist(SIZE(ady), LINF);
-    // vi parent(SIZE(ady), UNDEFINED);
+    vl dist(SIZE(ady), LINF); // vi parent(SIZE(ady), UNDEFINED);
     vb vis(SIZE(ady), false);
     set<nodo_pesado_t> q;
-
     dist[s] = 0;
     q.insert({0, s});
-
     while(!q.empty()){
-        int v = q.begin() -> snd;
-        q.erase(q.begin());
-        
+        int v = q.begin() -> snd; q.erase(q.begin());
         if (vis[v]) {continue;}
         vis[v] = true;
         for(auto [w, u] : ady[v]){
