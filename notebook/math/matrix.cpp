@@ -13,7 +13,7 @@ struct Mat {
 		m = n ? SIZE(v[0]) : 0;
 		a = v;
 	}
-	// Constructor de la identidad.  (Puedo hacer Mat I = Mat::identity(4);)
+	// Constructor de la identidad. (Mat I = Mat::identity(4);)
 	static Mat identity(int _n) {
 		Mat res(_n, _n);
 		forn(i, _n) {res.a[i][i] = 1;}
