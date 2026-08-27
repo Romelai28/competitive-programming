@@ -96,4 +96,4 @@ int range_mode(int l, int r)
 		else if (aux[rnk[i]] == aux[rnk[m]] and a[i] < a[m]) m = i;
 	
 	return m;
-} // O(n√n + q√n) Time, O(n√n) Space
+} // O(n*sqrt(n) + q*sqrt(n)) Time, O(n*sqrt(n)) Space

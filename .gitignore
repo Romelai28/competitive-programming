@@ -1,9 +1,9 @@
-/notebook/notebook.aux
-/notebook/notebook.log
-/notebook/notebook.out
-/notebook/notebook.toc
-/notebook/notebook.pdf
-/notebook/notebook.fls
-/notebook/.notebook.tex.swp
-/notebook/notebook.fdb_latexmk
+/notebook/*.aux
+/notebook/*.log
+/notebook/*.out
+/notebook/*.toc
+/notebook/*.pdf
+/notebook/*.fls
+/notebook/.*.tex.swp
+/notebook/*.fdb_latexmk
 /.vscode

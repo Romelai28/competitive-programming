@@ -74,4 +74,4 @@ int query(int l, int r) {
 		for (int j = prv(i, ans); j >= l; j = prv(j, 1))
 			ans++;
 	return ans;
-} // O(n√n + q√n) Time, O(n√n) Space
+} // O(n*sqrt(n) + q*sqrt(n)) Time, O(n*sqrt(n)) Space
