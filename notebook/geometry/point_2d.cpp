@@ -11,11 +11,8 @@
 	ld norm() { return sqrt(x*x + y*y); }
 	ld dist(Point b) { return (b - (*this)).norm(); }
 
-
 	bool operator < (Point other) const {
-		if (x != other.x){
-			return x < other.x;
-		}
+		if (x != other.x) return x < other.x;
 		return y < other.y;
 	}
 };

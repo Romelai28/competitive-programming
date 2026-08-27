@@ -11,7 +11,5 @@ struct Plane {
 	// 1. side(p) es positivo, si p esta en el lado de PI apuntado por el vector normal n.
 	// 2. da 0 si p esta en el plano PI.
 	// 3. negativo en el otro caso (esta en el lado de PI que no esta siendo apuntado por el vector normal n).
-	coordinate_t side(Point_3d p){
-		return (dot(n,p))-d;
-	}
+	coordinate_t side(Point_3d p){ return (dot(n,p))-d;}
 };
