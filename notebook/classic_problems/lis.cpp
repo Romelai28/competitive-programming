@@ -18,17 +18,17 @@ int calcular_LIS(vector<int> &valores){
 
 // Calcula la LIS de un arbol que termina en un vertice dado
 int binary_search(vector<int>& A, int i, int j, int k){
-    if (i >= j) return j;
+	if (i >= j) return j;
  
-    int middle = (i/2) + (j/2);
+	int middle = (i/2) + (j/2);
  
-    if (A[middle] == k){
-        return middle;
-    } else if (k < A[middle]){
-        return binary_search(A, i, middle, k);
-    } else {
-        return binary_search(A, middle + 1, j, k);
-    }
+	if (A[middle] == k){
+		return middle;
+	} else if (k < A[middle]){
+		return binary_search(A, i, middle, k);
+	} else {
+		return binary_search(A, middle + 1, j, k);
+	}
 }
 
 void dfs(int v, vector<int> &res, vector<vector<int>> &adjList, vector<int> &lis, vector<int> &val){

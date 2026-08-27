@@ -24,14 +24,14 @@ struct Mat {
 		Mat ans = Mat(n, m);
 		forn(i, n) forn(j, m) {ans.a[i][j] = (a[i][j] + b.a[i][j]) % MOD;}
 		return ans;
-    }
-    Mat operator - (const Mat &b) {
+	}
+	Mat operator - (const Mat &b) {
 		assert(n == b.n && m == b.m);
 		Mat ans = Mat(n, m);
 		forn(i, n) forn(j, m) {ans.a[i][j] = (a[i][j] - b.a[i][j] + MOD) % MOD;}
 		return ans;
-    }
-    Mat operator * (const Mat &b) {
+	}
+	Mat operator * (const Mat &b) {
 		assert(m == b.n);
 		Mat ans = Mat(n, b.m);
 		forn(i, n) forn(j, b.m) forn(k, m) {ans.a[i][j] = (ans.a[i][j] + 1LL * a[i][k] * b.a[k][j] % MOD) % MOD;}

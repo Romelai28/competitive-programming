@@ -2,13 +2,13 @@
 // Para poder optimizarlo tengo que cumplir la propiedad de que el c que minimiza f(j, i) es <= al c' que minimiza f(j, i+1)
 
 ll costs(int i, int j){
-    // Asume i <= j, y calcula el costo del subarray [A[i], ..., A[j]]
-    // TO DO
+	// Asume i <= j, y calcula el costo del subarray [A[i], ..., A[j]]
+	// TO DO
 }
 
 void optimization(int k, int l, int r, int optL, int optR, vvl &memo){
-    if (l > r) return ;
-    int middle = (l + r)/2, optIndex = UNDEFINED;
+	if (l > r) return ;
+	int middle = (l + r)/2, optIndex = UNDEFINED;
 		
 	forsn(c, max(1, optL), min(optR, middle)+1){
 		ll value = memo[k-1][c-1] + costs(c, middle);

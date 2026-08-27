@@ -50,7 +50,7 @@ private:
 		}
 		order.pb(v);
 	}
-    
+	
 	void dfs2(int x, int comp) {
 		vis[x] = true;
 		for (int u : ady_t[x]) {

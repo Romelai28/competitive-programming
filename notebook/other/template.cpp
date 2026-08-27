@@ -39,38 +39,38 @@ const double PI = acos(-1.0);
 // Show pair
 template <typename T1, typename T2>
 ostream & operator <<(ostream &os, const pair<T1, T2> &p) {
-    os << "{" << p.first << "," << p.second << "}";
-    return os;
+	os << "{" << p.first << "," << p.second << "}";
+	return os;
 }
 
 // Show vector
 template <typename T>
 ostream & operator <<(ostream &os, const vector<T> &v) {
-    os << "[";
-    forn(i, v.size()) {
-        if (i > 0) os << ",";
-        os << v[i];
-    }
-    return os << "]";
+	os << "[";
+	forn(i, v.size()) {
+		if (i > 0) os << ",";
+		os << v[i];
+	}
+	return os << "]";
 }
 
 // Show set
 template <typename T>
 ostream & operator <<(ostream &os, const set<T> &s) {
-    os << "{";
-    for(auto it = s.begin(); it != s.end(); it++){
-        if(it != s.begin()) os << ",";
-        os << *it;
-    }
-    return os << "}";
+	os << "{";
+	for(auto it = s.begin(); it != s.end(); it++){
+		if(it != s.begin()) os << ",";
+		os << *it;
+	}
+	return os << "}";
 }
 
 // ############################################################### //
 
 int main()
 {
-    cin.tie(0);
-    cin.sync_with_stdio(0);
+	cin.tie(0);
+	cin.sync_with_stdio(0);
 
-    return 0;
+	return 0;
 }

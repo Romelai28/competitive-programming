@@ -1,27 +1,27 @@
 struct SqrtDescomposition{
-    vi A;
-    vector<vi> descompositionOfA;
-    vi minOfDescomposition;
-    int n, sqrtOfN;
+	vi A;
+	vector<vi> descompositionOfA;
+	vi minOfDescomposition;
+	int n, sqrtOfN;
 
-    SqrtDescomposition(vi &arr) : A(arr){
-        n = SIZE(arr);
-        sqrtOfN = (int) sqrt(n) + 1;
-        descompositionOfA.resize(sqrtOfN);
-        minOfDescomposition.resize(sqrtOfN, INF);
+	SqrtDescomposition(vi &arr) : A(arr){
+		n = SIZE(arr);
+		sqrtOfN = (int) sqrt(n) + 1;
+		descompositionOfA.resize(sqrtOfN);
+		minOfDescomposition.resize(sqrtOfN, INF);
 
-        forn(i, n) descompositionOfA[i/sqrtOfN].pb(A[i]);
-    }
+		forn(i, n) descompositionOfA[i/sqrtOfN].pb(A[i]);
+	}
 
-    int findBlock(int index){
+	int findBlock(int index){
 		return index/sqrtOfN;
 	}
 	
 	int findIndexInTheBlock(int index){
 		return index % sqrtOfN;
 	}
-    
-    void answerQuery(int l, int r){
+	
+	void answerQuery(int l, int r){
 		int blockOfL = findBlock(l), blockOfR = findBlock(r);
 		int indexOfL = findIndexInTheBlock(l), indexOfR = findIndexInTheBlock(r);
 		

@@ -24,7 +24,7 @@ struct PrefixSum3D {
 			prefix[i+1][j+1][k+1] = prefix[i+1][j+1][k] + prefix[i+1][j][k+1] + prefix[i][j+1][k+1] - prefix[i+1][j][k] - prefix[i][j+1][k] - prefix[i][j][k+1] + prefix[i][j][k] + mat[i][j][k];
 		}
 	}
-    
+	
 	ll get_range_sum(int x1, int y1, int z1, int x2, int y2, int z2) const {
 		return prefix[x2+1][y2+1][z2+1] - prefix[x1][y2+1][z2+1] - prefix[x2+1][y1][z2+1] - prefix[x2+1][y2+1][z1] + prefix[x1][y1][z2+1] + prefix[x1][y2+1][z1] + prefix[x2+1][y1][z1] - prefix[x1][y1][z1];
 	}	

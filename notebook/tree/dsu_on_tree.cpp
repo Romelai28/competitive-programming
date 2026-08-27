@@ -14,14 +14,14 @@ void dfs_size(int v, vb &vis){
 }
 
 int get_heavy_child(int v, int parent) {
-    int max_size = -1, heavy = UNDEFINED;
-    for (int u : ady[v]) {
-        if (u != parent && subtree_size[u] > max_size) {
-            max_size = subtree_size[u];
-            heavy = u;
-        }
-    }
-    return heavy;
+	int max_size = -1, heavy = UNDEFINED;
+	for (int u : ady[v]) {
+		if (u != parent && subtree_size[u] > max_size) {
+			max_size = subtree_size[u];
+			heavy = u;
+		}
+	}
+	return heavy;
 }
 
 // Requiere haber completado nodes_in_subtree con dfs_size!

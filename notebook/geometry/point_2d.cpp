@@ -7,9 +7,9 @@
 	coordinate_t operator*(const Point& o) const { return x*o.x + y*o.y; }  // Dot product
 	coordinate_t operator^(const Point& o) const { return x*o.y - y*o.x; }  // Cross product
 	
-    Point proj(Point b) { return b*((*this)*b) / (b*b); }
-    ld norm() { return sqrt(x*x + y*y); }
-    ld dist(Point b) { return (b - (*this)).norm(); }
+	Point proj(Point b) { return b*((*this)*b) / (b*b); }
+	ld norm() { return sqrt(x*x + y*y); }
+	ld dist(Point b) { return (b - (*this)).norm(); }
 
 
 	bool operator < (Point other) const {

@@ -27,8 +27,8 @@ struct FenwickTree {
 	
 	// Exclusivo 1: Devuelve la suma [l, r].
 	ll get_sum(int l, int r) {
-        return get_sum(r) - get_sum(l - 1);
-    }
+		return get_sum(r) - get_sum(l - 1);
+	}
 	
 	// Exclusivo 2: Hace A[i] += val para todo i en [l, r].
 	void range_add(int l, int r, ll val) {

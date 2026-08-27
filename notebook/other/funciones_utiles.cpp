@@ -41,6 +41,6 @@ set_union(all(set1), all(set2), inserter(res, res.begin()));
 
 // Suma de: M[a] + ... + M[b]
 int getSumBetween(int a, int b){ // Notar que prefixSum tiene tamano |M| + 1
-    if (a > b || a < 0 || b >= SIZE(prefixSum)-1) return UNDEFINED;
-    return prefixSum[b+1] - prefixSum[a];
+	if (a > b || a < 0 || b >= SIZE(prefixSum)-1) return UNDEFINED;
+	return prefixSum[b+1] - prefixSum[a];
 }

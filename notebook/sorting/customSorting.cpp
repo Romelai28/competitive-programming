@@ -2,8 +2,8 @@
 struct MyStruct{
 	int age;
 	bool operator<(const MyStruct& other) const {
-        return age < other.age; // sort by age
-    }
+		return age < other.age; // sort by age
+	}
 }
 
 // Custom sorting para un set y pq

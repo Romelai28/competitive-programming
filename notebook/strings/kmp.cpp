@@ -10,15 +10,15 @@ vi prefix_function_kmp(const string &s) {
 }
 // Alternativa: usar kmp sobre p + '#' + s.
 int matching_kmp(const string &text, const string &pattern){
-    int n = SIZE(text), m = SIZE(pattern), len = 0, times = 0; // Contador de apariciones del patron
-    vi lps = prefix_function_kmp(pattern);
-    forn(i, n){
-        while (len > 0 && pattern[len] != text[i]) { len = lps[len-1]; }
-        if (pattern[len] == text[i]) { len++; }
-        if (len == m) {
+	int n = SIZE(text), m = SIZE(pattern), len = 0, times = 0; // Contador de apariciones del patron
+	vi lps = prefix_function_kmp(pattern);
+	forn(i, n){
+		while (len > 0 && pattern[len] != text[i]) { len = lps[len-1]; }
+		if (pattern[len] == text[i]) { len++; }
+		if (len == m) {
 			times++;  // Patron esta en s[i-m+1 : i] (text.substr(i-m+1, m) == pattern)
 			len = lps[len-1];
 		}
-    }
-    return times;
+	}
+	return times;
 }

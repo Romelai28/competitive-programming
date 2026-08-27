@@ -7,11 +7,11 @@ using ordered_set = tree<T, null_type,less<T>, rb_tree_tag,tree_order_statistics
 
 template <typename T>
 using ordered_multiset = tree<
-    pair<T, int>,
-    null_type,
-    less<pair<T, int>>, // NOT less_equal
-    rb_tree_tag,
-    tree_order_statistics_node_update
+	pair<T, int>,
+	null_type,
+	less<pair<T, int>>, // NOT less_equal
+	rb_tree_tag,
+	tree_order_statistics_node_update
 >;
 
 ordered_set v;

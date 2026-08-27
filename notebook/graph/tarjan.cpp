@@ -11,8 +11,8 @@ struct Tarjan{
 		foundAt.resize(SIZE(adjList));
 		minTimeFound.resize(SIZE(adjList));
 	}
-    
-    // Llamarlo con parent = UNDEFINED
+	
+	// Llamarlo con parent = UNDEFINED
 	void dfs(int v, int currentTime, int parent){
 		visited[v] = true;
 		foundAt[v] = minTimeFound[v] = currentTime;
@@ -22,11 +22,11 @@ struct Tarjan{
 			
 			if (!visited[w]) {
 				dfs(w, currentTime+1, v);
-                // Quiere decir que w no llego a v ni a ninguno de sus ancestros
+				// Quiere decir que w no llego a v ni a ninguno de sus ancestros
 				if (foundAt[v] < minTimeFound[w]) bridges.pb({v, w});
 			}
-            
-            minTimeFound[v] = min(minTimeFound[v], minTimeFound[w]);
+			
+			minTimeFound[v] = min(minTimeFound[v], minTimeFound[w]);
 		}
 	}
 };
