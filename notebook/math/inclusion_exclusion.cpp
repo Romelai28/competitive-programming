@@ -5,26 +5,14 @@ struct InclusionExclusion{
 	InclusionExclusion(ll K, ll N, vl &a) : k(K), n(N), A(a) {}
 
 	// Quiero ver la # elementos que cumplen P(x) en la union de los conjuntos: A[0], A[1], ..., A[k-1]
-	int amountOfSets(ll mask){
-		int res = 0;
-		while (mask > 0){
-			res += (mask & 1);
-			mask = mask >> 1;
-		}
-		return res;
-	}
-
 	ll sizeIntersection(ll mask){
-		ll res = 0;
-		ll divisor = 1;
+		ll res = 0, divisor = 1;
 		int j = 0;
 
 		while (mask > 0){
 			if (mask & 1){
-				if (divisor > n/A[j]){
-					divisor = 0;
-					break;
-				} else { divisor *= A[j];}
+				if (divisor > n/A[j]){ divisor = 0; break; }
+				else divisor *= A[j];
 			}
 			j++;
 			mask = mask >> 1;
@@ -35,10 +23,9 @@ struct InclusionExclusion{
 	}
 	
 	ll solve(){
-		ll res = 0;
-		ll cota = 1ll << k;
+		ll res = 0, cota = 1ll << k;
 		forsn(mask, 1, cota){
-			ll sizeSet = amountOfSets(mask);
+			ll sizeSet = (ll) __builtin_popcount(mask);
 			if (sizeSet % 2 == 0) res -= sizeIntersection(mask);
 			else res += sizeIntersection(mask);
 		}
