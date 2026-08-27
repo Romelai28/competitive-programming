@@ -1,6 +1,5 @@
 // Complexity: O(N * 2^N)
 // F[mask] = sum A[i] for all i subset of mask.
-
 // Requiere: F <- A
 forn(i, N) {
 	forn(mask, 1<<N ){
