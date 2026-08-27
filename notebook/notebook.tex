@@ -2,9 +2,9 @@
 \input{preamble.tex}
 \begin{document}
 
-\def\title{Universidad de Buenos Aires - FCEN - Sale con dp y fritas}
+\def\title{Universidad de Buenos Aires - FCEN - EANEM}
 .\\[0.2cm]
-\centering{\LARGE\textbf{Sale con dp y fritas}} \\[0.5cm]
+\centering{\LARGE\textbf{El anterior nombre era mufa}} \\[0.5cm]
 \centering{\includegraphics[width=5.5cm]{img/fritas.png}}
 \tableofcontents\newpage
 
@@ -14,6 +14,8 @@
 \section{Data structures}
 \subsection{Disjoint Set}
 \cppfile{data_structures/disjointSet.cpp}
+\subsection{DSU con rollback}
+\cppfile{data_structures/dsu_with_rollback.cpp}
 \subsection{MinHeap}
 \cppfile{data_structures/minHeap.cpp}
 \subsection{Ordered set}
@@ -28,33 +30,36 @@
 \cppfile{data_structures/segment_tree.cpp}
 \subsection{Segment tree lazy}
 \cppfile{data_structures/segment_tree_lazy.cpp}
+\subsection{Segment tree lazy con upgrade}
+\cppfile{data_structures/segment_tree_lazy_upgrade.cpp}
 \subsection{Merge sort tree}
 \cppfile{data_structures/merge_sort_tree.cpp}
-\subsection{Graph}
-\cppfile{data_structures/graph.cpp}
+\subsection{Binary Jumping}
+\cppfile{data_structures/binary_jumping.cpp}
+\subsection{Sliding window RMQ}  % Duda si lo agrego.
+\cppfile{data_structures/sliding_window_rmq.cpp}
+
 
 \section{Classic problems}
 \subsection{DP bitmask}
 \cppfile{classic_problems/dp_bitmask.cpp}
 \subsection{DP optimization}
 \cppfile{classic_problems/dp_optimization.cpp}
+\subsection{SOS DP}
+\cppfile{classic_problems/sos_dp.cpp}
 \subsection{LIS}
 \cppfile{classic_problems/lis.cpp}
 \subsection{LCS}
 \cppfile{classic_problems/lcs.cpp}
 \subsection{Meeting in the middle}
 \cppfile{classic_problems/meeting_in_the_middle.cpp}
-\subsection{Sliding window}
-\cppfile{classic_problems/sliding_window.cpp}
 \subsection{Maximum Subarray sum}
 \cppfile{classic_problems/subarray_sum.cpp}
 \subsection{Maximal nested intervals}
 \cppfile{classic_problems/maximal_nested_intervals.cpp}
 
 \section{Grafos}
-\subsection{BFS}
-\cppfile{graph/bfs.cpp}
-\subsection{DFS}
+\subsection{DFS}  % Duda si ponerlo
 \cppfile{graph/dfs.cpp}
 \subsection{Bellman-Ford}
 \cppfile{graph/bellman_ford.cpp}
@@ -62,7 +67,7 @@
 \cppfile{graph/dijkstra.cpp}
 \subsection{Floyd-Warshall}
 \cppfile{graph/floyd_warshall.cpp}
-\subsection{Dantzig}
+\subsection{Dantzig}  % Duda si agregarlo.
 \cppfile{graph/dantzig.cpp}
 \subsection{Kruskal}
 \cppfile{graph/kruskal.cpp}
@@ -80,24 +85,20 @@
 \cppfile{graph/tarjan.cpp}
 \subsection{2-SAT}
 \cppfile{graph/2sat.cpp}
-\subsection{Eulerian Tour}
+\subsection{Eulerian Tour}  % Le cambiamos el nombre?
 \cppfile{graph/eulerian_tour.cpp}
-\subsection{DAG}
+\subsection{DAG}  % Duda si ponerlo.
 \cppfile{graph/dag.cpp}
-\subsection{Succesor graph}
+\subsection{Succesor graph}  % Duda si ponerlo.
 \cppfile{graph/succesor_graph.cpp}
-\subsection{Util}
-\cppfile{graph/util_graph.cpp}
 \subsection{Dinic}
 \cppfile{graph/dinic.cpp}
 \subsection{Min cost max flow}
 \cppfile{graph/min_cost_max_flow.cpp}
 
 \section{Tree}
-\subsection{Binary jumping}
-\cppfile{tree/binary_jumping.cpp}
 \subsection{Lowest Common Ancestor (LCA)}
-\cppfile{tree/lowest_common_ancestor.cpp}
+\cppfile{tree/lca.cpp}
 \subsection{Tree diameter}
 \cppfile{tree/tree_diameter.cpp}
 \subsection{Tree distances}
@@ -106,6 +107,8 @@
 \cppfile{tree/tree_matching.cpp}
 \subsection{DSU on tree}
 \cppfile{tree/dsu_on_tree.cpp}
+\subsection{Heavy Light Decomposition (HLD)}
+\cppfile{tree/hld.cpp}
 
 \section{Searching}
 \subsection{Binary search}
@@ -138,6 +141,8 @@
 \cppfile{math/aritmetica_modular.cpp}
 \subsection{Matrices}
 \cppfile{math/matrix.cpp}
+\subsection{Gaussian elimination}
+\cppfile{math/gaussian_elimination.cpp}
 \subsection{Cambio de base}
 \cppfile{math/cambio_base.cpp}
 \subsection{Factorizacion}
@@ -152,9 +157,9 @@
 \cppfile{math/extended_euclides.cpp}
 \subsection{Ecuaciones diofanticas lineales}
 \cppfile{math/diophantine_ecuations.cpp}
-\subsection{GCD - Maximo comun divisor}
+\subsection{GCD - Maximo comun divisor} % ?
 \cppfile{math/greatest_common_divisor.cpp}
-\subsection{LCM - Minimo comun multiplo}
+\subsection{LCM - Minimo comun multiplo} % ? 
 \cppfile{math/lowest_common _multiple.cpp}
 \subsection{Criba de Eratostenes}
 \cppfile{math/sieve_of_eratosthenes.cpp}

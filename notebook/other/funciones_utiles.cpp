@@ -4,7 +4,7 @@ freopen("prueba.out", "w", stdout);
 
 // Input/Output
 cout << fixed << setprecision(1); // Imprimir con 1 decimal
-cout << setprecision(numeric_limits<long double>::digits10 + 1); // Muestra con full precision para ld
+cout << setprecision(numeric_limits<ld>::digits10 + 1); // Muestra con full precision para ld
 
 // cin.ignore(numeric_limits<streamsize>::max(), '\n'); Si leimos previamente algo, poner esto antes del getline
 string s;
@@ -24,6 +24,9 @@ int myint1 = stoi(myString); // Funciona con int y float.
 M.erase(it); // Borrar siempre en un multiset (y en general) usando un iterador para no borrar todas las apariciones
 sort(all(A), greater()); // Para ordenar un vector, llamar a una funcion bool
 *max_element(all(A)); *min_element(all(A)); 
+mt19937 rng(time(0));
+shuffle(all(A), rng); // Mezclar un vector, rng es mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+do {...} while (next_permutation(all(A))); // Generar todas las permutaciones de un vector (A debe estar ordenado!)
 __int128 x; // Tipo de datos para calculaciones muy grandes
 
 const double DINF=numeric_limits<double>::infinity();  // double inf
