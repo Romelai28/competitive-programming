@@ -7,7 +7,7 @@ struct BCC {
 private:
 	void dfs(const vvi &adj, int u, int p = -1) {
 		num[u] = low[u] = ++timer;
-		st.push_back(u);
+		st.pb(u);
 		for (auto v : adj[u]) {
 			if (v == p) continue;
 			if (num[v]) { low[u] = min(low[u], num[v]); continue;}
@@ -15,9 +15,9 @@ private:
 			low[u] = min(low[u], low[v]);
 			if (low[v] >= num[u]) {
 				is_ariculation_point[u] = (num[u] > 1 || num[v] > 2);
-				comps.push_back({u});
+				comps.pb({u});
 				while (comps.back().back() != v) {
-					comps.back().push_back(st.back());
+					comps.back().pb(st.back());
 					st.pop_back();
 				}
 			}

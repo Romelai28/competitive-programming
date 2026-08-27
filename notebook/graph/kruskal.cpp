@@ -6,7 +6,7 @@ ll kruskal(ll n, vector<pair<ll, pair<ll, ll>>> &lista_edges){
 	DisjointSet dsu(n+1);
 	ll res = 0;
 	for(auto e : lista_edges){
-		ll peso = e.first, x = (e.second).first, y = (e.second).second;
+		ll peso = e.fst, x = (e.snd).fst, y = (e.snd).snd;
 		if (dsu.findSet(x) != dsu.findSet(y)){
 			dsu.unionSet(x, y);
 			res += peso;

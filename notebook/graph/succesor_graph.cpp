@@ -72,8 +72,7 @@ struct SuccesorGraph{
 	}
 	
 	void markCycle(int v){
-		int lengthOfCycle = 0;
-		int startCycle = v;
+		int lengthOfCycle = 0, startCycle = v;
 		
 		while (representantOfVertex[v] == UNDEFINED){
 			representantOfVertex[v] = startCycle;
@@ -88,25 +87,13 @@ struct SuccesorGraph{
 	void buildTree(int v, int currentDepth, int root){
 		rootOfTree[v] = root;
 		distanceFromRoot[v] = currentDepth;
-		
-		for (int u : adjList[v]){
-			if (representantOfVertex[u] != UNDEFINED) continue;
-			buildTree(u, currentDepth+1, root);
-		}
+		for (int u : adjList[v]) if (representantOfVertex[u] == UNDEFINED) buildTree(u, currentDepth+1, root);
 	}
-	
 	
 	void findCycles(){
 		vi representantsOfCycles;
-		
-		forn(i, SIZE(succesors)){
-			if (visited[i] == NO_VISITADO) dfs(i, representantsOfCycles);
-		}
-		
+		forn(i, SIZE(succesors)) if (visited[i] == NO_VISITADO) dfs(i, representantsOfCycles);
 		for (int v : representantsOfCycles) markCycle(v);
-		
-		forn(i, SIZE(succesors)){
-			if (representantOfVertex[i] != UNDEFINED) buildTree(i, 0, i);
-		}
+		forn(i, SIZE(succesors)) if (representantOfVertex[i] != UNDEFINED) buildTree(i, 0, i);
 	}
 };
