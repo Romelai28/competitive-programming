@@ -11,7 +11,6 @@ int binarySearch(int start, int end, vector<ll> &A, ll v){
 	else return binarySearch(start, mid-1, A, v);
 }
 
-// Calcular extremo derecho que cumple P(X)
 int rightBinarySearch(int start, int end){
 	int l = start - 1;
 	int r = end + 1;
@@ -26,7 +25,6 @@ int rightBinarySearch(int start, int end){
 	return l; // l es el ultimo elemento que cumple P(X)
 }
 
-// Calcular extremo izquierdo que cumple P(X)
 int leftBinarySearch(int start, int end){
 	int l = start - 1; 
 	int r = end + 1; 
