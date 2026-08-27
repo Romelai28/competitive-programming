@@ -21,8 +21,14 @@ double cross(vec a, vec b) { return a.x*b.y - a.y*b.x; }
 bool ccw(Point p, Point q, Point r) {
 	return cross(toVec(p, q), toVec(p, r)) > 0;
 }
- 
+
 // returns true if point r is on the same line as the line pq
 bool collinear(Point p, Point q, Point r) {
 	return cross(toVec(p, q), toVec(p, r)) == 0;
+}
+
+ld angle(const Point a, const Point o, const Point b) {
+	vec oa = toVec(o, a), ob = toVec(o, b);
+	// a != o != b
+	return acos(dot(oa, ob) / sqrt(norma_cuadrado(oa) * norma_cuadrado(ob)));
 }
