@@ -1,55 +1,13 @@
 typedef pair<ll, ll> interval;
 
-// Las funciones suponen que los intervalos son validos, es decir: p.first <= p.second
-// Los intervalos descritos son de la forma: [p.first, p.second]
-
-// Esta funcion chequea si dos intervalos son disjuntos
-bool areDisjoint(interval &p1, interval &p2) {
-	ll startingTimeP1 = p1.first, endingTimeP1 = p1.second;
-	ll startingTimeP2 = p2.first, endingTimeP2 = p2.second;
-	return endingTimeP1 < startingTimeP2 || endingTimeP2 < startingTimeP1;
-}
-
-// Esta funcion chequea si p1 esta incluido en p2
-bool isIncluded(interval &p1, interval &p2){
-	ll startingTimeP1 = p1.first, endingTimeP1 = p1.second;
-	ll startingTimeP2 = p2.first, endingTimeP2 = p2.second;
-	return startingTimeP2 <= startingTimeP1 && endingTimeP1 <= endingTimeP2;;
-}
-
-// Esta funcion chequea si x pertenece al intervalo p1
-bool belongsToTheInterval(interval &p1, ll x){
-	ll startingTimeP1 = p1.first, endingTimeP1 = p1.second;
-	return startingTimeP1 <= x && x <= endingTimeP1;
-}
-
-// Esta funcion chequea si el intervalo p1 esta a la izquierda de p2, es decir: p1.second <= p2.first
-bool estaALaIzquierda(interval &p1, interval &p2){
-	ll endingTimeP1 = p1.second, startingTimeP2 = p2.first;
-	return endingTimeP1 <= startingTimeP2;
-}
-
-// Esta funcion me retorna el tamano de un intervalo. En caso de que el intervalo sea invalido, retorna 0
-ll intervalSize(interval &p1){
-	ll endingTimeP1 = p1.second, startingTimeP1 = p2.first;
-	ll res = (ll) endingTimeP1 - startingTimeP1 + 1;
-	if (startingTimeP1 > endingTimeP1) res = 0;
-	return res;
-}
-
-// Esta funcion retorna la interseccion entre dos intervalos. Chequear que la respuesta sea valida porque en caso de interseccion vacia te devuelve un intervalo invalido
-interval intersectionIntervals(interval &p1, interval &p2){
-	ll startingTimeP1 = p1.first, endingTimeP2 = p1.second;
-	ll startingTimeP2 = p2.first, endingTimeP2 = p2.second;
-	interval res = {max(startingTimeP1, startingTimeP2), min(endingTimeP1, endingTimeP2)};
-	return res;
-}
+// Las funciones suponen que los intervalos son validos, es decir: p.fst <= p.snd
+// Los intervalos descritos son de la forma: [p.fst, p.snd]
 
 // Esta funcion me ordena los intervalos para tener primero a aquellos que terminan antes y en caso de empate al que empieza antes.
 bool finishEarlier(interval &p1, interval &p2){
-	ll endingTimeP1 = p1.second, endingTimeP2 = p2.second;
+	ll endingTimeP1 = p1.snd, endingTimeP2 = p2.snd;
 	if (endingTimeP1 != endingTimeP2) return endingTimeP1 < endingTimeP2;
-	ll startingTimeP1 = p1.first, startingTimeP2 = p2.first;
+	ll startingTimeP1 = p1.fst, startingTimeP2 = p2.fst;
 	return startingTimeP1 < startingTimeP2;
 }
 
@@ -57,9 +15,9 @@ bool finishEarlier(interval &p1, interval &p2){
 // Esto me garantiza que: intervalo[i] e intervalo[i+1] se relacionan como: intervalo[i+1] esta contenido en i, o esta superpuesto con intervalo[i+1] pero tiene una parte que no y que esta a la derecha de este.
 // Ademas, si intervalo[i+1] e intervalo[i] son disjuntos se que intervalo[i+k] con k>1 tambien es disjunto con intervalo[i]
 bool startEarlier(interval &p1, interval &p2){
-	ll startingTimeP1 = p1.first, startingTimeP2 = p2.first;
+	ll startingTimeP1 = p1.fst, startingTimeP2 = p2.fst;
 	if (startingTimeP1 != startingTimeP2) return startingTimeP1 < startingTimeP2;
-	ll endingTimeP1 = p1.second, endingTimeP2 = p2.second;
+	ll endingTimeP1 = p1.snd, endingTimeP2 = p2.snd;
 	return endingTimeP1 > endingTimeP2;
 }
 
@@ -119,9 +77,9 @@ interval redundantInterval(vector<interval> &intervals){
 		} else if (i+2 <= n-1){ // Si el intervalo siguiente no esta contenido en el actual, chequeo si esta contenido entre el actual y el siguiente a el
 			interval laterInterval = intervals[i+2];
 
-			if (belongsToTheInterval(currentInterval, nextInterval.first)){ // Chequeo si una parte del intervalo siguiente esta contenido en el actual
+			if (belongsToTheInterval(currentInterval, nextInterval.fst)){ // Chequeo si una parte del intervalo siguiente esta contenido en el actual
 				// Esto es lo que me falta contener del intervalo siguiente
-				interval newInterval = {currentInterval.second + 1, nextInterval.second};
+				interval newInterval = {currentInterval.snd + 1, nextInterval.snd};
 
 				if (isIncluded(newInterval, laterInterval)){ // Chequeo si dicha parte esta contenido en el intervalo siguiente a el
 					res = nextInterval;
@@ -156,23 +114,6 @@ ll biggestIntersection(vector<interval> &A, vector<interval> &B) {
 		} else {
 			j++;
 		}
-	}
-
-	return res;
-}
-
-int biggestIntersectionOfIntervals(vector<interval> &A){
-	int res = 0, currentRes = 0;
-
-	vector<pair<ll, int>> B;
-	forn(i, SIZE(A)){
-		B.pb({A[i].fst, 1});
-		B.pb({A[i].snd, -1});
-	}
-
-	forn(i, SIZE(B)){
-		currentRes += B[i].snd;
-		res = max(res, currentRes);
 	}
 
 	return res;

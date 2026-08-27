@@ -1,51 +1,45 @@
-// M = 1e9+7, 991831889, M=1e9+9 (Primo). B=31, B=53, B=9973 (No necesariamente primo).
+const int HASH_K = 2;
+const ll HASH_P = 1777771;
+ll HASH_MOD[HASH_K] = {999727999, 1070777777};
+ll HASH_INV_P[HASH_K] = {325255434, 10018302};
+ 
+vvl hashPow, hashInvPow;
+// Llamar a initHash()
 
-// Precomputo: O(|s|)
-// Query: O(1)
-
-struct HashedString {	
-	HashedString(const string &s) : prefix_hash(SIZE(s)+1), potencia(SIZE(s)+1) {
-		potencia[0] = 1;
-		forsn(i, 1, SIZE(s)+1) { potencia[i] = mulMod(potencia[i-1], B, M); }
-		
-		prefix_hash[0] = 0;
-		forsn(i, 1, SIZE(s)+1) { prefix_hash[i] = addMod(mulMod(prefix_hash[i-1], B, M), (ll)s[i-1], M); }
-	}
+void initHash(int maxN){
+    hashPow = vvl(HASH_K, vl(maxN + 1, 1));
+    hashInvPow = vvl(HASH_K, vl(maxN + 1, 1));
+ 
+    forn(k, HASH_K){
+        forsn(i, 1, maxN + 1){
+            hashPow[k][i] = (1LL * hashPow[k][i - 1] * HASH_P) % HASH_MOD[k];
+            hashInvPow[k][i] = (1LL * hashInvPow[k][i - 1] * HASH_INV_P[k]) % HASH_MOD[k];
+        }
+    }
+}
+ 
+struct Hash {
+    vvl pref;
+	int n;
 	
-	ll get_hash(int start, int end){ // [start, end]
-		return mod(prefix_hash[end + 1] - mulMod(prefix_hash[start], potencia[end - start + 1], M), M);
-	}
-	
-private:
-	const ll M = MOD, B = 31;  // Cambiar M y B.
-	vector<ll> prefix_hash, potencia;
-};
+    Hash(string &s){
+        n = SIZE(s);
+        pref = vvl(HASH_K, vl(n + 1, 0));
+        forn(k, HASH_K) forn(i, n){
+            int x = (unsigned char)s[i];
+            pref[k][i + 1] = (pref[k][i] + 1LL * x * hashPow[k][i]) % HASH_MOD[k];
+        }
+    }
+ 
+    ll get(int l, int r){
+		assert(0 <= l && l <= r && r < n);
 
-// ############################################################### //
-// Implementacion alternativa
-
-powers.resize(maxPower+1, 1); invPowers.resize(maxPower+1, 1);
-forsn(i, 1, maxPower+1) powers[i] = mulMod(powers[i-1], p, m);
-forsn(i, 1, maxPower+1) invPowers[i] = binPowMod(powers[i], m-2, m);
-
-struct HashString{
-	ll p, m, n; // primo, mod, SIZE(s)
-	vector<char> s;
-	const vl *powers;
-	const vl *invPowers;
-	vl prefixHash;
-	
-	ll getValue(char c){return c - 'a' + 1;}
-
-	HashString(){}
-	HashString(ll P, ll M, const vector<char> &S, const vl &Powers, const vl &InvPowers) : p(P), m(M), n(SIZE(S)), s(S), powers(&Powers), invPowers(&InvPowers){
-		prefixHash.resize(n+1, 0);
-		forsn(i, 1, n+1) prefixHash[i] = addMod(prefixHash[i-1], mulMod(getValue(s[i-1]), (*powers)[i-1], m), m);
-	}
-	
-	ll get_hash(int start, int end){ // [start, end]
-		ll res = addMod(prefixHash[end+1], (-1)*prefixHash[start], m); // res = hash[0, ..., end] - hash[0, ..., start-1] 
-		res = mulMod(res, (*invPowers)[start], m); // res /= 2^start
-		return res;
-	}
+		vl H;
+		forn(i, HASH_K) {
+			ll h0 = (pref[i][r+1] - pref[i][l] + HASH_MOD[i]) % HASH_MOD[i];
+        	h0 = (1LL * h0 * hashInvPow[i][l]) % HASH_MOD[i];
+			H.pb(h0);
+		}
+        return (ll(H[1]) << 32) | ll(H[0]);
+    }
 };
