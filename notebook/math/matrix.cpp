@@ -19,6 +19,12 @@ struct Mat {
 		forn(i, _n) {res.a[i][i] = 1;}
 		return res;
 	}
+	// Constructores de matrices vectores columnas.
+	static Mat crearVectorColumna(vector<matrix_t> v) {  // ej: Mat inicial = Mat::crearVectorColumna(vector<int> {1, 1});
+		Mat res(SIZE(v), 1);
+		forn(i, SIZE(v)) {res.a[i][0] = v[i];}
+		return res;
+	}
 	Mat operator + (const Mat &b) {
 		assert(n == b.n && m == b.m);
 		Mat ans = Mat(n, m);
