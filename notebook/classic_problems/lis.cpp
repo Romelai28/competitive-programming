@@ -3,7 +3,6 @@
 int calcular_LIS(vi &valores){
 	vi lis;
 	lis.pb(valores[0]);
-
 	forsn(i, 1, n){
 		if(lis.back() < valores[i]){  // Para el caso creciente pero no estricto, poner <= y usar upper_bound.
 			lis.pb(valores[i]);
@@ -12,6 +11,5 @@ int calcular_LIS(vi &valores){
 			lis[low] = valores[i];
 		}
 	}
-
 	return SIZE(lis);
 }
