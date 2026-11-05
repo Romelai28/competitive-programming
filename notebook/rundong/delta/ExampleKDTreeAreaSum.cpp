@@ -12,7 +12,7 @@ int compareNode(int i, int j, int dimension) {
 struct Cmp {
    int dimension;
    bool operator()(int a, int b) const {
-       return compareNode(a, b, dimension) < 0;
+	   return compareNode(a, b, dimension) < 0;
    }
 };
 void maintain(int i) {
@@ -51,14 +51,14 @@ ll query(ll a, ll b, ll c, int i) {
 // main
    cin >> n >> m;
    for (int i = 1; i <= n; i++) {
-       cin >> x[i] >> y[i] >> v[i];
-       arr[i] = i;
+	   cin >> x[i] >> y[i] >> v[i];
+	   arr[i] = i;
    }
    xmin[0] = ymin[0] = INF;
    xmax[0] = ymax[0] = -INF;
    root = build(1, n, 0);
    ll a, b, c;
    for (int i = 1; i <= m; i++) {
-       cin >> a >> b >> c;  // suma de pesos de todos los puntos (x, y) tales
-       cout << query(a, b, c, root) << "\n";    // que ax + by < c
+	   cin >> a >> b >> c;  // suma de pesos de todos los puntos (x, y) tales
+	   cout << query(a, b, c, root) << "\n";    // que ax + by < c
    }

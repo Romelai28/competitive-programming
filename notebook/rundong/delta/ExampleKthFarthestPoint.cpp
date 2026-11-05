@@ -8,10 +8,10 @@ struct HeapNode {
    ll dist;
    int id;
    bool operator<(const HeapNode &other) const {
-       if (dist != other.dist) {
-           return dist > other.dist;
-       }
-       return id < other.id;
+	   if (dist != other.dist) {
+		   return dist > other.dist;
+	   }
+	   return id < other.id;
    }
 };
 priority_queue<HeapNode> heap;
@@ -23,7 +23,7 @@ int compareNode(int i, int j, int dimension) {
 struct Cmp {
    int dimension;
    bool operator()(int a, int b) const {
-       return compareNode(a, b, dimension) < 0;
+	   return compareNode(a, b, dimension) < 0;
    }
 };
 void maintain(int i) {
@@ -57,40 +57,40 @@ void updateAns(int qx, int qy, int qk, int i) {
    if (i == 0) return;
    heap.push({dist(qx, qy, x[i], y[i]), i});
    if (heap.size() > qk) {
-       heap.pop();
+	   heap.pop();
    }
    ll gl = guess(qx, qy, ls[i]);
    ll gr = guess(qx, qy, rs[i]);
    if (gl > gr) {
-       if (heap.size() < qk || gl >= heap.top().dist) {
-           updateAns(qx, qy, qk, ls[i]);
-       }
-       if (heap.size() < qk || gr >= heap.top().dist) {
-           updateAns(qx, qy, qk, rs[i]);
-       }
+	   if (heap.size() < qk || gl >= heap.top().dist) {
+		   updateAns(qx, qy, qk, ls[i]);
+	   }
+	   if (heap.size() < qk || gr >= heap.top().dist) {
+		   updateAns(qx, qy, qk, rs[i]);
+	   }
    } else {
-       if (heap.size() < qk || gr >= heap.top().dist) {
-           updateAns(qx, qy, qk, rs[i]);
-       }
-       if (heap.size() < qk || gl >= heap.top().dist) {
-           updateAns(qx, qy, qk, ls[i]);
-       }
+	   if (heap.size() < qk || gr >= heap.top().dist) {
+		   updateAns(qx, qy, qk, rs[i]);
+	   }
+	   if (heap.size() < qk || gl >= heap.top().dist) {
+		   updateAns(qx, qy, qk, ls[i]);
+	   }
    }
 }
 int main() {
    cin >> n;
    for (int i = 1; i <= n; i++) {
-       cin >> x[i] >> y[i];
-       arr[i] = i;
+	   cin >> x[i] >> y[i];
+	   arr[i] = i;
    }
    xmin[0] = ymin[0] = INF;
    xmax[0] = ymax[0] = -INF;
    root = build(1, n, 0);
    cin >> m;
    for (int i = 1, qx, qy, qk; i <= m; i++) {
-       cin >> qx >> qy >> qk;
-       while (!heap.empty()) heap.pop();
-       updateAns(qx, qy, qk, root);
-       cout << heap.top().id << '\n';
+	   cin >> qx >> qy >> qk;
+	   while (!heap.empty()) heap.pop();
+	   updateAns(qx, qy, qk, root);
+	   cout << heap.top().id << '\n';
    }
 }
